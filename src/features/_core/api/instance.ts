@@ -1,4 +1,6 @@
 import ky, { KyInstance } from 'ky';
+import { useUserStore } from '@/features/user';
+
 const baseURL = 'http://localhost:8000/api/';
 
 const baseApi = ky.create();
@@ -7,13 +9,12 @@ const authApi =  ky.create({
   timeout: 30000,
   hooks: {
     beforeRequest: [
-      (request) => {
-        // // insert access token to header
-        // const {getToken} = useStudentStore.getState().actions;
-        // const token = getToken()[0].token;
-        // if (token) {
-        //   request.headers.set("Authorization", `Bearer ${token}`);
-        // }
+      (request) => {  
+        const { getAccessToken } = useUserStore.getState().actions;
+        const token = getAccessToken();
+        if (token) {
+          request.headers.set("Authorization", `Bearer ${token}`);
+        }
       },
     ],
   },

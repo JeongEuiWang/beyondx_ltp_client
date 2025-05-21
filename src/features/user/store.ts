@@ -25,6 +25,7 @@ export const useUserStore = create(
   combine(initialState, (set, get) => ({
     actions: {
       setUser: (authUser: AuthUser) => set({ ...authUser }),
+      getAccessToken: () => get().access.token,
       getUser: () => get(),
       reset: () => set(initialState),
     },
