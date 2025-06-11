@@ -1,8 +1,9 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter } from "react-router";
 import RootRouter from "@/app/RootRouter";
+import { Toaster } from "sonner";
 
-const queryClient = new QueryClient({
+export const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
       refetchOnWindowFocus: false,
@@ -20,6 +21,7 @@ function App() {
       <BrowserRouter>
         <RootRouter />
       </BrowserRouter>
+      <Toaster />
     </QueryClientProvider>
   );
 }

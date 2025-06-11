@@ -10,6 +10,10 @@ import {
   getUserAPIResponse,
   signUpAPIRequest,
   signUpAPIResponse,
+  updateUserAddressAPIRequest,
+  updateUserAddressAPIResponse,
+  deleteUserAddressAPIRequest,
+  deleteUserAddressAPIResponse,
 } from "./type";
 
 const signUpAPI: API<signUpAPIRequest, signUpAPIResponse> = async (request) => {
@@ -44,6 +48,7 @@ const getUserAPI: API<getUserAPIRequest, getUserAPIResponse> = async () => {
     throw e;
   }
 };
+
 const createUserAddressAPI: API<
   createUserAddressAPIRequest,
   createUserAddressAPIResponse
@@ -70,10 +75,39 @@ const getUserAddressesAPI: API<
   }
 };
 
+const updateUserAddressAPI: API<
+  updateUserAddressAPIRequest,
+  updateUserAddressAPIResponse
+> = async (request) => {
+  const { id, user_id, ...address } = request;
+  try {
+    const result = await UserServer.put(`address/${id}`, {
+      json: { ...address },
+    }).json();
+    return result as updateUserAddressAPIResponse;
+  } catch (e) {
+    throw e;
+  }
+};
+
+const deleteUserAddressAPI: API<
+  deleteUserAddressAPIRequest,
+  deleteUserAddressAPIResponse
+> = async (request) => {
+  try {
+    const result = await UserServer.delete(`address/${request.id}`).json();
+    return result as deleteUserAddressAPIResponse;
+  } catch (e) {
+    throw e;
+  }
+};
+
 export {
   signUpAPI,
   checkEmailAPI,
   createUserAddressAPI,
   getUserAddressesAPI,
   getUserAPI,
+  updateUserAddressAPI,
+  deleteUserAddressAPI,
 };

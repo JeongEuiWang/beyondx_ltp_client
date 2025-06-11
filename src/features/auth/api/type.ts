@@ -11,9 +11,14 @@ type refreshAPIRequest = void;
 
 type refreshAPIResponse = AuthUser
 
+type signOutAPIRequest = void;
+
+type signOutAPIResponse = void;
 export type {
   signInAPIRequest,
   signInAPIResponse,
   refreshAPIRequest,
-  refreshAPIResponse
+  refreshAPIResponse,
+  signOutAPIRequest,
+  signOutAPIResponse,
 }

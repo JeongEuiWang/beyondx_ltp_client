@@ -11,6 +11,10 @@ import {
   useGetUserResponse,
   useSignUpRequest,
   useSignUpResponse,
+  useUpdateUserAddressRequest,
+  useUpdateUserAddressResponse,
+  useDeleteUserAddressRequest,
+  useDeleteUserAddressResponse,
 } from "./type";
 import {
   checkEmailAPI,
@@ -18,10 +22,11 @@ import {
   getUserAPI,
   getUserAddressesAPI,
   signUpAPI,
+  updateUserAddressAPI,
+  deleteUserAddressAPI,
 } from "@/features/user/api";
+import { queryClient } from "@/app/App";
 
-// 질문 1: mutation에 대한 성공 및 실패 이후의 처리는 어디서 결정하는 것이 좋을까?
-// Featrure vs View
 const useSignUp: Mutation<useSignUpRequest, useSignUpResponse> = (args) => {
   const { onSuccess, onError } = args;
   return useMutation({
@@ -65,6 +70,7 @@ const useCreateUserAddress: Mutation<
   return useMutation({
     mutationFn: async (data) => {
       const result = await createUserAddressAPI(data);
+      queryClient.invalidateQueries({ queryKey: ["getUserAddresses"] });
       return result;
     },
     ...(onSuccess && { onSuccess: (res: any) => onSuccess(res) }),
@@ -85,10 +91,46 @@ const useGetUserAddresses: SuspenseQuery<
   });
 };
 
+const useUpdateUserAddress: Mutation<
+  useUpdateUserAddressRequest,
+  useUpdateUserAddressResponse
+> = (args) => {
+  const { onSuccess, onError } = args;
+  return useMutation({
+    mutationFn: async (data) => {
+      const result = await updateUserAddressAPI(data);
+      queryClient.invalidateQueries({ queryKey: ["getUserAddresses"] });
+      return result;
+    },
+    ...(onSuccess && { onSuccess: (res: any) => onSuccess(res) }),
+    ...(onError && { onError: (res) => onError(res) }),
+  });
+};
+
+const useDeleteUserAddress: Mutation<
+  useDeleteUserAddressRequest,
+  useDeleteUserAddressResponse
+> = (args) => {
+  const { onSuccess, onError } = args;
+  return useMutation({
+    mutationFn: async (data) => {
+      const result = await deleteUserAddressAPI(data);
+      queryClient.invalidateQueries({ queryKey: ["getUserAddresses"] });
+      return result;
+    },
+    ...(onSuccess && { onSuccess: (res: any) => onSuccess(res) }),
+    ...(onError && { onError: (res) => onError(res) }),
+  });
+};
+
+
+
 export {
   useSignUp,
   useCheckEmail,
   useGetUser,
   useCreateUserAddress,
   useGetUserAddresses,
+  useUpdateUserAddress,
+  useDeleteUserAddress,
 };

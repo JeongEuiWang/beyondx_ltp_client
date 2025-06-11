@@ -31,6 +31,18 @@ type useGetUserAddressesRequest = void;
 
 type useGetUserAddressesResponse = UserAddressWithId[];
 
+type useUpdateUserAddressRequest = UserAddressWithId;
+
+type useUpdateUserAddressResponse = UserAddressWithId;
+
+type useDeleteUserAddressRequest = {
+  id: number;
+};
+
+type useDeleteUserAddressResponse = void;
+
+
+
 export type {
   useSignUpRequest,
   useSignUpResponse,
@@ -42,4 +54,8 @@ export type {
   useCreateUserAddressResponse,
   useGetUserAddressesRequest,
   useGetUserAddressesResponse,
+  useUpdateUserAddressRequest,
+  useUpdateUserAddressResponse,
+  useDeleteUserAddressRequest,
+  useDeleteUserAddressResponse,
 };

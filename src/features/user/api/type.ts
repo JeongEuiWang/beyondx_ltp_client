@@ -33,6 +33,18 @@ type getUserAddressesAPIRequest = void;
 
 type getUserAddressesAPIResponse = UserAddressWithId[];
 
+type updateUserAddressAPIRequest = UserAddressWithId;
+
+type updateUserAddressAPIResponse = UserAddressWithId;
+
+type deleteUserAddressAPIRequest = {
+  id: number;
+};
+
+type deleteUserAddressAPIResponse = void;
+
+
+
 export type {
   signUpAPIRequest,
   signUpAPIResponse,
@@ -44,4 +56,8 @@ export type {
   getUserAddressesAPIResponse,
   getUserAPIRequest,
   getUserAPIResponse,
+  updateUserAddressAPIRequest,
+  updateUserAddressAPIResponse,
+  deleteUserAddressAPIRequest,
+  deleteUserAddressAPIResponse,
 };

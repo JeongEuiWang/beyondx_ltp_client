@@ -1,5 +1,5 @@
 import { useSignUpForm, useSignUp, ISignUpForm } from "@/features/user";
-import { RowLabelFormInput, ErrorMessage } from "@/shared/component";
+import { RowLabelFormInput, ErrorMessage } from "@/shared/components";
 import { Separator, Button } from "@/shared/ui";
 import { SubmitHandler } from "react-hook-form";
 import { useNavigate } from "react-router";

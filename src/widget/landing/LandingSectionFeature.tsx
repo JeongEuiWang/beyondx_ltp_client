@@ -27,7 +27,7 @@ const ltpFeaturesData = [
 
 export default function LandingSectionFeature() {
   return (
-    <section id="features" className="py-30 bg-white">
+    <section id="features" className="py-40 bg-white">
       <div className="container mx-auto px-6">
         <div className="text-center mb-10">
           <h2 className="text-3xl sm:text-4xl font-semibold mb-4">

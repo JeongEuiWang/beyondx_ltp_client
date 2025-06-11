@@ -2,7 +2,7 @@ import AboutImage from "@/shared/assets/images/img_landing_about.jpg";
 
 export default function LandingSectionAbout() {
   return (
-    <section id="about" className="w-full py-30 ">
+    <section id="about" className="w-full py-40">
       <div className="container mx-auto px-16">
         <div className="flex flex-col md:flex-row items-center gap-12">
           <div className="md:w-1/2">

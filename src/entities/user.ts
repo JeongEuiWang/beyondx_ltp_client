@@ -7,12 +7,18 @@ enum UserLevelEnum {
   VIP = "VIP",
 }
 
+enum UserRoleEnum {
+  USER = 1,
+  ADMIN = 2,
+}
+
 type User = {
   id: number;
   email: string;
   first_name: string;
   last_name: string;
   phone: string;
+  role_id: number;
   total_payment_amount: number;
 };
 
@@ -32,4 +38,4 @@ type AuthUser = UserWithLevel & {
 };
 
 export type { User, UserWithLevel, UserLevel, AuthUser };
-export { UserLevelEnum };
+export { UserLevelEnum, UserRoleEnum };

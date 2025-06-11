@@ -20,3 +20,4 @@ type UserAddressWithId = UserAddress & {
 };
 
 export type { UserAddress, UserAddressWithId };
+export { LocationType };

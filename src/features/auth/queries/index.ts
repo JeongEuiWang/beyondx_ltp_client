@@ -1,13 +1,16 @@
 import { useSuspenseQuery, useMutation } from "@tanstack/react-query";
 import { SuspenseQuery, Mutation } from "@/features/_core/api";
-import { refreshAPI, signInAPI } from "@/features/auth/api";
+import { refreshAPI, signInAPI, signOutAPI } from "@/features/auth/api";
 import {
   useRefreshRequest,
   useRefreshResponse,
   useSignInRequest,
   useSignInResponse,
+  useSignOutRequest,
+  useSignOutResponse,
 } from "./type";
 import { useUserStore } from "@/features/user";
+import { queryClient } from "@/app/App";
 // post 요청은 mutation이어야 한다는 법칙은 없음
 const useRefresh: SuspenseQuery<useRefreshRequest, useRefreshResponse> = () => {
   const { setUser } = useUserStore((state) => state.actions);
@@ -32,7 +35,6 @@ const useSignIn: Mutation<useSignInRequest, useSignInResponse> = (args) => {
         email: data.email,
         password: data.password,
       });
-      console.log(result);
       setUser(result);
       return result;
     },
@@ -41,4 +43,19 @@ const useSignIn: Mutation<useSignInRequest, useSignInResponse> = (args) => {
   });
 };
 
-export { useRefresh, useSignIn };
+const useSignOut: Mutation<useSignOutRequest, useSignOutResponse> = (args) => {
+  const { onSuccess, onError } = args;
+  const { actions } = useUserStore();
+  return useMutation({
+    mutationFn: async () => {
+      const result = await signOutAPI();
+      actions.reset();
+      queryClient.clear();
+      return result;
+    },
+    ...(onSuccess && { onSuccess: (res: any) => onSuccess(res) }),
+    ...(onError && { onError: (res) => onError(res) }),
+  });
+};
+
+export { useRefresh, useSignIn, useSignOut };

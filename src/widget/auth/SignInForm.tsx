@@ -3,6 +3,7 @@ import { SubmitHandler } from "react-hook-form";
 import { Button, Input, Label, Separator } from "@/shared/ui";
 import { useNavigate } from "react-router";
 import { ISignInForm, useSignInForm, useSignIn } from "@/features/auth";
+import { UserRoleEnum } from "@/entities/user";
 
 const SignInForm = () => {
   const navigate = useNavigate();
@@ -14,7 +15,11 @@ const SignInForm = () => {
 
   const { mutate } = useSignIn({
     onSuccess: (response) => {
-      navigate("/service");
+      if(response.role_id === UserRoleEnum.ADMIN) {
+        navigate("/admin");
+      } else {
+        navigate("/service");
+      }
     },
     onError: () => {
       toast.error("Something went wrong.");

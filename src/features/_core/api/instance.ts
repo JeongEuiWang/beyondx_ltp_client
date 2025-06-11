@@ -31,9 +31,17 @@ const authServer = server(authApi);
 
 const AuthServer = baseServer('auth');
 const UserServer = authServer('user');
+const RateServer = baseServer('rate');
+const CargoServer = baseServer('cargo');
+const QuoteServer = authServer('quote');
+const AdminServer = authServer('admin');
 
 export {
   AuthServer,
   UserServer,
+  RateServer,
+  CargoServer,
+  QuoteServer,
+  AdminServer,
 }
 

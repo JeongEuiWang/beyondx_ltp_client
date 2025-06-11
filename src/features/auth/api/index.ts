@@ -5,6 +5,8 @@ import {
   signInAPIResponse,
   refreshAPIRequest,
   refreshAPIResponse,
+  signOutAPIRequest,
+  signOutAPIResponse,
 } from "./type";
 
 const signInAPI: API<signInAPIRequest, signInAPIResponse> = async (request) => {
@@ -35,4 +37,15 @@ const refreshAPI: API<refreshAPIRequest, refreshAPIResponse> = async () => {
   }
 };
 
-export { signInAPI, refreshAPI };
+const signOutAPI: API<signOutAPIRequest, signOutAPIResponse> = async () => {
+  try {
+    const result = await AuthServer.post("logout", {
+      credentials: "include",
+    }).json();
+    return result as signOutAPIResponse;
+  } catch (e) {
+    throw e;
+  }
+};
+
+export { signInAPI, refreshAPI, signOutAPI };
