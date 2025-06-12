@@ -42,7 +42,7 @@ const TransportationServiceSection = ({
   };
 
   return (
-    <Card className="border border-gray-200 bg-white rounded-lg shadow-none">
+    <Card className="bg-white rounded-lg">
       <CardContent className="px-6">
         <div className="flex items-center mb-6">
           <div className="p-1.5 bg-gray-50 rounded-md mr-3">

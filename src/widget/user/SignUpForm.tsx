@@ -15,6 +15,7 @@ const SignUpForm = () => {
 
   const { mutate, isPending } = useSignUp({
     onSuccess: (response) => {
+      console.log(response);
       toast.success(`Welcome, ${response.first_name} ${response.last_name}`);
       navigate("/sign-in");
     },
