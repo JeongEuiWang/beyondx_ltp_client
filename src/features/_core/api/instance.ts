@@ -1,7 +1,7 @@
 import ky, { KyInstance } from 'ky';
 import { useUserStore } from '@/features/user';
 
-const baseURL = 'http://localhost:8000/api/';
+const baseURL = import.meta.env.VITE_API_URL;
 
 const baseApi = ky.create();
 
@@ -22,7 +22,7 @@ const authApi =  ky.create({
 
 const server = (api: KyInstance) => (route: string) => {
   return api.extend({
-    prefixUrl: `${baseURL}${route}/`
+    prefixUrl: `${baseURL}/${route}/`
   });
 };
 
