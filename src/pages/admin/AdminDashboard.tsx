@@ -110,7 +110,7 @@ const AdminDashboard = () => {
                 <TableHeader>
                   <TableRow className="hover:bg-transparent border-b border-gray-100">
                     <TableHead className="font-medium text-gray-900 text-sm">
-                      Quote ID
+                      Order ID
                     </TableHead>
                     <TableHead className="font-medium text-gray-900 text-sm">
                       Priority
@@ -151,11 +151,11 @@ const AdminDashboard = () => {
                   ) : (
                     currentQuotes.map((quote) => (
                       <TableRow
-                        key={quote.id}
+                        key={quote.order_primary}
                         className="hover:bg-gray-50/50 border-b border-gray-50"
                       >
                         <TableCell className="font-mono text-sm text-gray-900 font-medium">
-                          {quote.id || "N/A"}
+                          {quote.order_primary || "N/A"}
                         </TableCell>
                         <TableCell>
                           {quote.is_priority ? (

@@ -24,6 +24,7 @@ type Quote = {
   to_location: QuoteLocation;
   cargo: Cargo[];
   order_status: "ESTIMATE" | "SUBMIT" | "REJECT" | "ACCEPT" | "COMPLETED";
+  order_primary: string;
   created_at?: string;
   updated_at?: string;
   base_price: number;
